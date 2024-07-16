@@ -109,6 +109,10 @@ if ($action == 'select') {
         $result = "UPDATE student SET stu_name = '$stu_name', stu_img = '$img_name' WHERE stu_id = '$stu_id'";
     } else {
         echo json_encode(["message" => "No Image"]);
+        $oldImg = $object->getExistingImage('student', 'stu_id', $stu_id);
+        if ($oldImg) {
+            $object->deleteImage($oldImg);
+        }
         $result = "UPDATE student SET stu_name = '$stu_name', stu_img = '' WHERE stu_id = '$stu_id'";
     }
 
@@ -118,14 +122,5 @@ if ($action == 'select') {
         echo json_encode(["message" => "Record updated successfully!"]);
     } else {
         echo json_encode(["message" => "Failed to update record."]);
-    }
-} elseif ($action == 'removeimage') {
-    $stu_id = isset($_POST['stu_id']) ? $_POST['stu_id'] : '';
-    $oldImg = $object->getExistingImage('student', 'stu_id', $stu_id);
-    if ($oldImg) {
-        $object->deleteImage($oldImg);
-        echo json_encode(["message" => "Image deleted successfully!"]);
-    } else {
-        echo json_encode(["message" => "No image found to delete."]);
     }
 }
