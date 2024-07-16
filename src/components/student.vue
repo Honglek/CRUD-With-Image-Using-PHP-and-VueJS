@@ -234,32 +234,9 @@ export default {
       }
     },
     reamoveImage() {
-      if (!this.id) {
-        console.error("Student ID is required to remove image.");
-        this.img = null;
-        this.showimg = null;
-        return;
-      }
-      const formData = new FormData();
-      formData.append("stu_id", this.id);
-      axios
-        .post(
-          "http://localhost/path/to/your/php/student.php?action=removeimage",
-          formData,
-          {
-            headers: {
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        )
-        .then((response) => {
-          console.log(response.data);
-          this.img = null;
-          this.imgUrl = null;
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      this.img = null;
+      this.imgUrl = null;
+      this.showimg = null;
     },
     clearForm() {
       this.id = null;
