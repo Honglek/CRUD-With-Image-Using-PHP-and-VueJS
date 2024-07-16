@@ -10,7 +10,7 @@ class Myclass
 {
     function link()
     {
-        $connect = new mysqli("localhost", "root", "", "test");
+        $connect = new mysqli("localhost", "root", "", "db_name");
         if ($connect->connect_error) {
             die("Connection failed: " . $connect->connect_error);
         }
